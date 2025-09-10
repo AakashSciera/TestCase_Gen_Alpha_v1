@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+
+# Generated data
+scraped_data/
+Generated_Test_Cases/
+
+# IDEs
+.vscode/
+.idea/
