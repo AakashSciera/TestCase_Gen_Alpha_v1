@@ -187,9 +187,12 @@ def generate_test_cases(image_path, prompt):
 
         # Save the response
         test_case_path = os.path.join(output_dir, f"{os.path.splitext(os.path.basename(image_path))[0]}_test_cases.txt")
+        llm_response = response.choices[0].message.content
         with open(test_case_path, "w", encoding="utf-8") as f:
-            f.write(response.choices[0].message.content)
+            f.write(llm_response)
         print(f"Test cases saved to {test_case_path}")
+        return llm_response
+        
 
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -199,9 +202,10 @@ if __name__ == "__main__":
     prompt = "Inputs:known_url: \"https://x.com\"\n  - device_hint: \"DESKTOP\"\n  - notes: \"Focus on all the actionable elements.\"\nObjective: Produce a structured test plan."
     print("CWD:", os.getcwd())
 
-    image_path = os.path.join("../scraped_data", image_name)
+    image_path = os.path.join("..\scraped_data", image_name)
 
     if not os.path.exists(image_path):
         print(f"Error: Image not found at {image_path}")
     else:
-        generate_test_cases(image_path, prompt)
+        print()
+        #generate_test_cases(image_path, prompt)
